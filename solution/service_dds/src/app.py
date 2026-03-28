@@ -5,10 +5,11 @@ from flask import Flask
 
 from app_config import AppConfig
 from dds_loader.dds_message_processor_job import DdsMessageProcessor
+from dds_loader.repository import DdsRepository
+from dds_loader.output_message import DdsOutputMessage
+
 
 app = Flask(__name__)
-
-config = AppConfig()
 
 
 @app.get('/health')
@@ -19,8 +20,21 @@ def hello_world():
 if __name__ == '__main__':
     app.logger.setLevel(logging.DEBUG)
 
+    config = AppConfig()
+
+    consumer = config.kafka_consumer()
+    producer = config.kafka_producer()
+    pg = config.pg_warehouse_db()
+    dds_repository = DdsRepository(pg)
+    dds_output_message = DdsOutputMessage(pg)
+
     proc = DdsMessageProcessor(
-        app.logger
+        logger=app.logger,
+        consumer=consumer,
+        producer=producer,
+        dds_repository=dds_repository,
+        dds_output_message=dds_output_message,
+        batch_size=30
     )
 
     scheduler = BackgroundScheduler()

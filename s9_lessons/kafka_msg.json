@@ -1,0 +1,95 @@
+# Входное сообщение из kafka (топик order-service_orders)
+{
+    "object_id": 9696852, 
+    "object_type": "order", 
+    "sent_dttm": "2026-03-14 18:41:30", 
+    "payload": {
+        "restaurant": {"id": "ef8c42c19b7518a9aebec106"}, 
+        "date": "2026-03-07 18:59:28", 
+        "user": {"id": "626a81ce9a8cd1920641e2b5"}, 
+        "order_items": [
+            {"id": "fa9e41cab58e5c525a74c326", 
+            "name": "\u041c\u0443\u0442\u0442\u043e\u043d \u0420\u043e\u0433\u0430\u043d \u0414\u0436\u043e\u0448", 
+            "price": 749, 
+            "quantity": 5}
+        ], 
+        "bonus_payment": 0, 
+        "cost": 3745, 
+        "payment": 3745, 
+        "bonus_grant": 0, 
+        "statuses": [
+            {"status": "CLOSED", "dttm": "2026-03-07 18:59:28"}, 
+            {"status": "DELIVERING", "dttm": "2026-03-07 18:10:25"}, 
+            {"status": "COOKING", "dttm": "2026-03-07 18:01:14"}, 
+            {"status": "OPEN", "dttm": "2026-03-07 17:22:52"}
+        ], 
+        "final_status": "CLOSED", "update_ts": "2026-03-07 18:59:28"}
+}
+
+
+
+# Выходное сообщение в stg-service_orders
+{
+    "object_id": 322519,
+    "object_type": "order",
+    "payload": {
+        "id": 322519,
+        "date": "2022-11-19 16:06:36",
+        "cost": 300,
+        "payment": 300,
+        "status": "CLOSED",
+        "restaurant": {
+            "id": "626a81cfefa404208fe9abae",
+            "name": "Кофейня №1"
+        },
+        "user": {
+            "id": "626a81ce9a8cd1920641e296",
+            "name": "Котова Ольга Вениаминовна",
+            "login": "konstantin58"  # добавил
+        },
+        "products": [
+            {
+                "id": "6276e8cd0cf48b4cded00878",
+                "price": 180,
+                "quantity": 1,
+                "name": "РОЛЛ С ТОФУ И ВЯЛЕНЫМИ ТОМАТАМИ",
+                "category": "Выпечка"
+            },
+            {
+                "id": "6276e8cd0cf48b4cded0086c",
+                "price": 60,
+                "quantity": 2,
+                "name": "ГРИЛАТА ОВОЩНАЯ ПО-МЕКСИКАНСКИ",
+                "category": "Закуски"
+            }
+        ]
+    }
+}
+
+
+# Выходное сообщение в dds-service_orders
+            dst_msg = {
+                "object_id": str(h_order_pk),
+                "sent_dttm": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"),
+                "object_type": "order_report",
+                "payload": {
+                    "id": str(h_order_pk),
+                    "order_dt": order_dt.strftime("%Y-%m-%d %H:%M:%S"),
+                    "status": status,
+                    "restaurant": {
+                        "id": str(h_restaurant_pk),
+                        "name": name
+                    },
+                    "user": {
+                        "id": str(h_user_pk),
+                        "username": username
+                    },
+                    "products": [
+                        {
+                        "id": str(h_product_id), 
+                        "name": "product_name", 
+                        "category": "category_name"
+                    }
+                    ]
+                }
+            }

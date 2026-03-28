@@ -45,12 +45,11 @@ class KafkaConsumer:
             'sasl.mechanism': 'SCRAM-SHA-512',
             'sasl.username': user,
             'sasl.password': password,
-            'group.id': group,  # '',
+            'group.id': group,
             'auto.offset.reset': 'earliest',
             'enable.auto.commit': False,
             'error_cb': error_callback,
-            'debug': 'all',
-            'client.id': 'someclientkey'
+            'client.id': 'cdm-service'
         }
 
         self.topic = topic

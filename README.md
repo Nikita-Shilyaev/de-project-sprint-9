@@ -1,5 +1,9 @@
 # Проект 9-го спринта
 
+## Ссылки на ресурсы:
+- Реджистри: https://console.yandex.cloud/folders/b1g0df1gnu9bdgadp98o/container-registry/registries/crpnss1in06dh0678ci3/overview
+- Дашборд: https://datalens.ru/151l6e96tj52l
+
 ### Как работать с репозиторием
 1. В вашем GitHub-аккаунте автоматически создастся репозиторий `de-project-sprint-9` после того, как вы привяжете свой GitHub-аккаунт на Платформе.
 2. Скопируйте репозиторий на свой компьютер. В качестве пароля укажите ваш `Access Token`, который нужно получить на странице [Personal Access Tokens](https://github.com/settings/tokens)):
