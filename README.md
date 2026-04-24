@@ -8,7 +8,8 @@
 
 ### Архитектура пайплайна:
 Схема пайплайна:
-`\solution\схема-ETL.png`
+`\solution\схема-ETL.png` 
+
 Прим.: в репозитории представлен код для поднятия в Kubernetes двух сервисов, `DDS-Service` и `CDM-Service`.
 
 1) **DDS-Service**: 
