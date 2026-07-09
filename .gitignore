@@ -126,3 +126,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Helm values (contain credentials)
+solution/service_dds/app/values.yaml
+solution/service_cdm/app/values.yaml
+
+# Scratch readme draft
+readme_claude.md
